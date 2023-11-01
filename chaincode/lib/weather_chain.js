@@ -90,7 +90,7 @@ class WeatherChain extends Contract {
       id,
       Buffer.from(stringify(sortKeysRecursive(asset)))
     );
-    return asset.confirmed;
+    return JSON.stringify(asset);
   }
 
   async EndEvents(ctx) {
@@ -151,7 +151,7 @@ class WeatherChain extends Contract {
       Buffer.from(stringify(sortKeysRecursive(transaction)))
     );
     await ctx.stub.putState("tx_cnt", Buffer.from((txid + 1).toString()));
-    return txid;
+    return JSON.stringify(transaction);
   }
 
   // GetAllAssets returns all assets found in the world state.
